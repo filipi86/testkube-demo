@@ -14,11 +14,7 @@ spec:
     spec:
       containers:
       - name: hello-world
-        image: aabedraba/kusk-hello-world:v1.0.4
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
+        image: aabedraba/kusk-hello-world:latest
         ports:
         - containerPort: 8080
 ---

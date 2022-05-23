@@ -10,26 +10,40 @@ x-kusk:
       - GET
       - POST
   mocking: 
-    enabled: false # change to true to enable mocking
-  upstream:
-    service:
-      name: hello-world-svc
-      namespace: default
-      port: 8080
+    enabled: true
 paths:
   /hello:
-    x-kusk: 
-      upstream:
-        service:
-          name: hello-world-svc
-          namespace: default
-          port: 8080
     get:
       responses:
         '200':
           description: A simple hello world!
           content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message: 
+                    type: string
+              example: 
+                message: Hello from a mocked response!
+  /validated:
+    post:
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema: 
+              type: object
+              properties:
+                name:
+                  type: string
+              required:
+                - name
+      responses:
+        '200':
+          description: ""
+          content:
             text/plain:
               schema:
                 type: string
-              example: Hello from a mocked response!
+              example: Hello mocked Kusk!
