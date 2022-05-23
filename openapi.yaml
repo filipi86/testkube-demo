@@ -9,8 +9,11 @@ x-kusk:
     methods:
       - GET
       - POST
-  mocking: 
-    enabled: true
+  upstream:
+    service:
+      name: hello-world-svc
+      namespace: default
+      port: 8080
 paths:
   /hello:
     get:
@@ -27,6 +30,10 @@ paths:
               example: 
                 message: Hello from a mocked response!
   /validated:
+    x-kusk:
+      validation:
+        request:
+          enabled: true
     post:
       requestBody:
         description: ""
