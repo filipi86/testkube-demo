@@ -5,7 +5,9 @@ const app = express();
 app.use(bodyParser.json())
 
 app.get("/hello", function (req, res) {
-  res.send("Hello from an implemented service!");
+  res.send({
+    message: "Hello from an implemented service!"
+  });
 });
 
 app.post("/validated", function (req, res) {
